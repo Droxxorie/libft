@@ -14,33 +14,24 @@ long unsigned int ft_strlcat(char *dst, const char *src, unsigned long int size)
 
 long unsigned int ft_strlcat(char *dst, const char *src, unsigned long int size)
 {
+    long unsigned int srclen;
+    long unsigned int dstlen;
     long unsigned int i;
-    int j;
 
+    srclen = 0;
+    dstlen = 0;
     i = 0;
-    j = 0;
-    while (dst[j])
-        j++;
-    if (size != 0)
+    while (src[srclen])
+        srclen++;
+    while (dst[dstlen])
+        dstlen++;
+    if (size < dstlen)
+        return (dstlen + size - 1);
+    while (src[i] && i + dstlen < size - 1)
     {
-        while (src[i] && i + j < size - 1)
-        {
-            dst[j + i] = src[i];
-            i++;
-        }
+        dst[dstlen + i] = src[i];
+        i++;
     }
-    dst[i + j] = '\0';
-    return (i + j);
-}
-
-#include <bsd/string.h>
-#include <stdio.h>
-int main(void)
-{
-    char dest1[50] = "Hello ";
-    char dest2[50] = "Hello ";
-    printf("original : %li\n", strlcat(dest1, "World", 0));
-    printf("ft : %li\n", ft_strlcat(dest2, "World", 0));
-    printf("original : %s\n", dest1);
-    printf("ft : %s\n", dest2);
+    dst[i + dstlen] = '\0';
+    return (dstlen + srclen);
 }
