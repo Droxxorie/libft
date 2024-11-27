@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 17:17:51 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/25 17:17:51 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/20 18:08:33 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/20 18:08:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putnbr_fd(int n, int fd);
+void *ft_calloc(size_t nmemb, size_t size);
 
-void ft_putnbr_fd(int n, int fd)
+void *ft_calloc(size_t nmemb, size_t size)
 {
-    long nbr;
+    void *array;
 
-    nbr = n;
-    if (nbr < 0)
-        {
-            ft_putchar_fd('-', fd);
-            nbr = -nbr;
-        }
-    if (nbr / 10 != 0)
-        ft_putnbr_fd(nbr / 10, fd);
-    ft_putchar_fd((nbr % 10) + '0', fd);
+    array = malloc(nmemb * size);
+    if (!array)
+        return (0);
+    ft_memset(array, 0, nmemb * size);
+    return (array);
 }
-
 /*
 int main(void)
 {
-    ft_putnbr_fd(10, 1);
+    int *array = ft_calloc(10, sizeof(int));
+    if (!array)
+        printf("Erreur alloc\n");
+    int i = 0;
+    while (i < 10)
+        printf("%i ", array[i++]);
+    printf("\n");
+    free(array);
 }
 */

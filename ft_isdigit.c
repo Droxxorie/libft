@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 17:17:51 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/25 17:17:51 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/12 17:39:02 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/12 17:39:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putnbr_fd(int n, int fd);
+int ft_isdigit(int  c);
 
-void ft_putnbr_fd(int n, int fd)
+int ft_isdigit(int  c)
 {
-    long nbr;
-
-    nbr = n;
-    if (nbr < 0)
-        {
-            ft_putchar_fd('-', fd);
-            nbr = -nbr;
-        }
-    if (nbr / 10 != 0)
-        ft_putnbr_fd(nbr / 10, fd);
-    ft_putchar_fd((nbr % 10) + '0', fd);
+    if (c >= '0' && c <= '9')
+        return (1);
+    return (0);
 }
-
-/*
-int main(void)
-{
-    ft_putnbr_fd(10, 1);
-}
-*/

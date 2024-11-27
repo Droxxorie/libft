@@ -10,13 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
 char *ft_strtrim(char const *s1, char const *set);
 int ft_isset(char c, const char *set);
-size_t ft_strlen(const char *str);
-void *ft_memcpy(void *dest, const void *src, size_t n);
 
 int ft_isset(char c, const char *set)
 {
@@ -42,7 +39,7 @@ char *ft_strtrim(char const *s1, char const *set)
     while (s1[start] && ft_isset(s1[start], set))
         start++;
     end = ft_strlen(s1);
-    while (end > start, ft_isset(s1[end - 1], set))
+    while (end > start && ft_isset(s1[end - 1], set))
         end--;
     len = end - start;
     str = malloc(sizeof(char) * (len + 1));

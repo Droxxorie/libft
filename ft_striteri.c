@@ -1,41 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 02:42:02 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/21 02:42:02 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/27 16:05:04 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/27 16:05:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t len);
+void ft_striteri(char *s, void (*f)(unsigned int, char*));
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+void ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-    size_t i;
-    char *substr;
+    unsigned int i;
 
-    substr = malloc(sizeof(char) * len);
-    if (!substr)
-        return (0);
+    if (!s || !f)
+        return;
     i = 0;
-    while (i < len)
+    while (s[i])
     {
-        substr[i] = s[start + i];
+        f(i, &s[i]);
         i++;
     }
-    return (substr);
 }
 /*
+void ft_toupperodd(unsigned int i, char *c)
+{
+    if (*c >= 'a' && *c <= 'z' && !(i % 2))
+        *c = *c - 32;
+}
+
 int main(void)
 {
-    const char *str = "Hello World";
-    printf("tr : %s\n", str);
-    char *substr = ft_substr(str, 6, 0);
-    printf("substr : %s\n", substr);
+    char str[] = "hello world";
+    printf("original : %s\n", str);
+    ft_striteri(str, ft_toupperodd);
+    printf("ft : %s\n", str);
 }
 */

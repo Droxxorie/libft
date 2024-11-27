@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 17:17:51 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/25 17:17:51 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/16 00:23:30 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/16 00:23:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putnbr_fd(int n, int fd);
+int ft_strncmp(const char *s1, const char *s2, size_t n);
 
-void ft_putnbr_fd(int n, int fd)
+int ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-    long nbr;
+    size_t i;
 
-    nbr = n;
-    if (nbr < 0)
-        {
-            ft_putchar_fd('-', fd);
-            nbr = -nbr;
-        }
-    if (nbr / 10 != 0)
-        ft_putnbr_fd(nbr / 10, fd);
-    ft_putchar_fd((nbr % 10) + '0', fd);
+    i = 0;
+    while (i < n && (s1[i] || s2[i]))
+    {
+        if (s1[i] != s2[i])
+            return (s1[i] - s2[i]);
+        i++;
+    }
+    return (0);
 }
-
-/*
-int main(void)
-{
-    ft_putnbr_fd(10, 1);
-}
-*/

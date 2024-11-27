@@ -1,41 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 02:42:02 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/21 02:42:02 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/18 12:33:59 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/18 12:33:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t len);
+int ft_memcmp(const void *s1, const void *s2, size_t n);
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+int ft_memcmp(const void *s1, const void *s2, size_t n)
 {
     size_t i;
-    char *substr;
+    const unsigned char *str1;
+    const unsigned char *str2;
 
-    substr = malloc(sizeof(char) * len);
-    if (!substr)
-        return (0);
     i = 0;
-    while (i < len)
+    str1 = s1;
+    str2 = s2;
+    while (i < n && (str1[i] || str2[i]))
     {
-        substr[i] = s[start + i];
+        if (str1[i] != str2[i])
+            return (str1[i] - str2[i]);
         i++;
     }
-    return (substr);
+    return (0);
 }
 /*
 int main(void)
 {
-    const char *str = "Hello World";
-    printf("tr : %s\n", str);
-    char *substr = ft_substr(str, 6, 0);
-    printf("substr : %s\n", substr);
+    char *str1 = "Hello World";
+    char *str2 = "Hello Zorld";
+    printf("Original : %i\n", memcmp(str1, str2, 11));
+    printf("ft : %i\n", ft_memcmp(str1, str2, 11));
 }
 */

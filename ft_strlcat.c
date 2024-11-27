@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 16:24:30 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/20 16:24:30 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/14 15:06:01 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/14 15:06:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strndup(const char *s, size_t n);
+size_t ft_strlcat(char *dst, const char *src, size_t size);
 
-char *ft_strndup(const char *s, size_t n)
+size_t ft_strlcat(char *dst, const char *src, size_t size)
 {
+    size_t srclen;
+    size_t dstlen;
     size_t i;
-    char *dup;
 
+    srclen = 0;
+    dstlen = 0;
     i = 0;
-    while (s[i] && i < n)
-        i++;
-    dup = malloc(sizeof(char) * (i + 1));
-    if (!dup)
-        return (0);
-    i = 0;
-    while (s[i] && i < n)
+    while (src[srclen])
+        srclen++;
+    while (dst[dstlen])
+        dstlen++;
+    if (size < dstlen)
+        return (dstlen + size - 1);
+    while (src[i] && i + dstlen < size - 1)
     {
-        dup[i] = s[i];
+        dst[dstlen + i] = src[i];
         i++;
     }
-    dup[i] = '\0';
-    return (dup);
+    dst[i + dstlen] = '\0';
+    return (dstlen + srclen);
 }

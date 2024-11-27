@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 02:42:02 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/21 02:42:02 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/18 15:06:46 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/18 15:06:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t len);
+void *ft_memchr(const void *s, int c, size_t n);
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+void *ft_memchr(const void *s, int c, size_t n)
 {
+    const unsigned char *str;
     size_t i;
-    char *substr;
 
-    substr = malloc(sizeof(char) * len);
-    if (!substr)
-        return (0);
+    str = s;
     i = 0;
-    while (i < len)
+    while (i < n && str[i])
     {
-        substr[i] = s[start + i];
+        if (str[i] == c)
+            return ((void *)&str[i]);
         i++;
     }
-    return (substr);
+    return (0);
 }
 /*
 int main(void)
 {
-    const char *str = "Hello World";
-    printf("tr : %s\n", str);
-    char *substr = ft_substr(str, 6, 0);
-    printf("substr : %s\n", substr);
+    char *str = "Hello World";
+    void *result = memchr(str, 'o', 0);
+    printf("Original : %s\n", (unsigned char *)result);
+    result = ft_memchr(str, 'o', 0);
+    printf("ft : %s\n", (unsigned char *)result);
 }
 */

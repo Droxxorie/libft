@@ -10,11 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 char **ft_split(char const *s, char c);
 int ft_countwords(char const *s, char c);
-char *ft_strndup(const char *s, size_t n);
 
 int ft_countwords(char const *s, char c)
 {
@@ -27,7 +26,7 @@ int ft_countwords(char const *s, char c)
     {
         if (*s == c)
                 key = 1;
-        else if (*s != c && key == 1);
+        else if (*s != c && key == 1)
         {
             words++;
             key = 0;
@@ -66,8 +65,6 @@ char **ft_split(char const *s, char c)
 }
 
 /*
-#include <stdio.h>
-
 int main(int ac, char **av)
 {
     if (ac == 3)

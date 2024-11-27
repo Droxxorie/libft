@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 17:17:51 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/25 17:17:51 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/16 00:35:48 by marvin            #+#    #+#             */
+/*   Updated: 2024/11/16 00:35:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putnbr_fd(int n, int fd);
+void *ft_memset(void *s, int c, size_t n);
 
-void ft_putnbr_fd(int n, int fd)
+void *ft_memset(void *s, int c, size_t n)
 {
-    long nbr;
+    unsigned char *str;
+    size_t i;
 
-    nbr = n;
-    if (nbr < 0)
-        {
-            ft_putchar_fd('-', fd);
-            nbr = -nbr;
-        }
-    if (nbr / 10 != 0)
-        ft_putnbr_fd(nbr / 10, fd);
-    ft_putchar_fd((nbr % 10) + '0', fd);
+    str = s;
+    i = 0;
+    while (i < n)
+        str[i++] = c;
+    return (s);
 }
-
-/*
-int main(void)
-{
-    ft_putnbr_fd(10, 1);
-}
-*/
