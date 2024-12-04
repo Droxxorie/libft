@@ -3,34 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eraad <eraad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 13:53:08 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/18 13:53:08 by marvin           ###   ########.fr       */
+/*   Created: 2024/12/03 15:46:43 by eraad             #+#    #+#             */
+/*   Updated: 2024/12/03 15:46:43 by eraad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strchr(const char *s, int c);
+char	*ft_strchr(const char *s, int c);
 
-char *ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-    while (*s)
-    {
-        if (*s == c)
-            return ((char *)s);
-        s++;
-    }
-    if (c == '\0')
-        return ((char *)s);
-    return (0);
+	unsigned char	uc;
+
+	uc = (unsigned char)c;
+	while (*s)
+	{
+		if ((unsigned char)*s == uc)
+			return ((char *)s);
+		s++;
+	}
+	if (uc == '\0')
+		return ((char *)s);
+	return (0);
 }
 /*
 int main(void)
 {
-    char *str = "Hello World";
-    printf("Original : %s\n", strchr(str, '\0'));
-    printf("ft : %s\n", ft_strchr(str, '\0'));
+	char *str = "teste";
+	printf("Original : %s\n", strchr(str, 1024));
+	printf("ft : %s\n", ft_strchr(str, 1024));
 }
 */

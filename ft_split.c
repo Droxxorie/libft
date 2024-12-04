@@ -3,78 +3,111 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eraad <eraad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 23:56:44 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/25 23:56:44 by marvin           ###   ########.fr       */
+/*   Created: 2024/12/04 18:51:43 by eraad             #+#    #+#             */
+/*   Updated: 2024/12/04 18:51:43 by eraad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char **ft_split(char const *s, char c);
-int ft_countwords(char const *s, char c);
+int		ft_countwords(char const *s, char sep);
+char	*ft_creatword(char const *s, int start, int len);
+char	**ft_createarray(int words);
+int		ft_fillarray(char **array, char const *s, char sep, int words);
+char	**ft_split(char const *s, char sep);
 
-int ft_countwords(char const *s, char c)
+int	ft_countwords(char const *s, char sep)
 {
-    int key;
-    int words;
+	int	words;
 
-    words = 0;
-    key = 1;
-    while (*s)
-    {
-        if (*s == c)
-                key = 1;
-        else if (*s != c && key == 1)
-        {
-            words++;
-            key = 0;
-        }
-        s++;
-    }
-    return (words);
+	words = 0;
+	while (*s)
+	{
+		while (*s == sep)
+			s++;
+		if (*s)
+		{
+			words++;
+			while (*s && *s != sep)
+				s++;
+		}
+	}
+	return (words);
 }
 
-char **ft_split(char const *s, char c)
+char	*ft_creatword(char const *s, int start, int len)
 {
-    char **res;
-    int i;
-    int j;
+	char	*word;
+	int		i;
 
-    res = malloc(sizeof(char *) * (ft_countwords(s, c) + 1));
-    if (!res)
-        return (0);
-    j = 0;
-    while (*s)
-    {
-        if (*s && *s != c)
-        {
-            i = 0;
-            while (s[i] && s[i] != c)
-                i++;
-            res[j] = ft_strndup(s, i);
-            j++;
-            s += i;
-        }
-        while (*s == c && *s)
-            s++;
-    }
-    res[j] = 0;
-    return (res);
+	word = malloc(sizeof(char) * (len + 1));
+	if (!word)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		word[i] = s[start + i];
+		i++;
+	}
+	word[i] = '\0';
+	return (word);
 }
 
-/*
-int main(int ac, char **av)
+char	**ft_createarray(int words)
 {
-    if (ac == 3)
-    {
-        char **str = ft_split(av[1], av[2][0]);
-        int i = 0;
-        while (str[i])
-            printf("%s\n", str[i++]);
-    }
-    else
-        printf("Erreur.\n");
+	char	**array;
+
+	array = malloc(sizeof(char *) * (words + 1));
+	if (!array)
+		return (NULL);
+	return (array);
 }
-*/
+
+int	ft_fillarray(char **array, char const *s, char sep, int words)
+{
+	int	i;
+	int	j;
+	int	start;
+
+	i = 0;
+	j = 0;
+	while (s[j] && i < words)
+	{
+		while (s[j] == sep)
+			j++;
+		start = j;
+		while (s[j] && s[j] != sep)
+			j++;
+		array[i] = ft_creatword(s, start, j - start);
+		if (!array[i])
+		{
+			while (i > 0)
+				free(array[--i]);
+			return (0);
+		}
+		i++;
+	}
+	array[i] = NULL;
+	return (1);
+}
+
+char	**ft_split(char const *s, char sep)
+{
+	char	**array;
+	int		words;
+
+	if (!s)
+		return (NULL);
+	words = ft_countwords(s, sep);
+	array = ft_createarray(words);
+	if (!array)
+		return (NULL);
+	if (!ft_fillarray(array, s, sep, words))
+	{
+		free(array);
+		return (NULL);
+	}
+	return (array);
+}

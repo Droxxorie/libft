@@ -3,39 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eraad <eraad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 02:42:02 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/21 02:42:02 by marvin           ###   ########.fr       */
+/*   Created: 2024/12/03 15:52:23 by eraad             #+#    #+#             */
+/*   Updated: 2024/12/03 15:52:23 by eraad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-    size_t i;
-    char *substr;
+	char	*substr;
+	char	*ptr;
 
-    substr = malloc(sizeof(char) * len);
-    if (!substr)
-        return (0);
-    i = 0;
-    while (i < len)
-    {
-        substr[i] = s[start + i];
-        i++;
-    }
-    return (substr);
+	if (!s)
+		return (NULL);
+	if (start >= ft_strlen(s))
+		len = 0;
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	substr = malloc(sizeof(char) * (len + 1));
+	if (!substr)
+		return (0);
+	ptr = substr;
+	while (len--)
+		*substr++ = s[start++];
+	*substr = '\0';
+	return (ptr);
 }
 /*
 int main(void)
 {
-    const char *str = "Hello World";
-    printf("tr : %s\n", str);
-    char *substr = ft_substr(str, 6, 0);
-    printf("substr : %s\n", substr);
+	const char *str = "Hello World";
+	printf("tr : %s\n", str);
+	char *substr = ft_substr(str, 0, 6);
+	printf("substr : %s\n", substr);
 }
 */
