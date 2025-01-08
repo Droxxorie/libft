@@ -6,37 +6,65 @@
 #    By: eraad <eraad@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 17:54:26 by marvin            #+#    #+#              #
-#    Updated: 2025/01/06 00:37:47 by eraad            ###   ########.fr        #
+#    Updated: 2025/01/08 22:08:46 by eraad            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	ft_is/ft_isalnum.c ft_is/ft_isprint.c ft_is/ft_isalpha.c ft_is/ft_isdigit.c ft_is/ft_isascii.c \
-		ft_mem/ft_memcmp.c ft_mem/ft_memmove.c ft_mem/ft_memcpy.c ft_mem/ft_memchr.c ft_mem/ft_memset.c \
-		ft_put/ft_putchar_fd.c ft_put/ft_putnbr_fd.c ft_put/ft_putstr_fd.c ft_put/ft_putendl_fd.c \
-		ft_str/ft_strlcat.c ft_str/ft_strncmp.c ft_str/ft_strchr.c ft_str/ft_strlcpy.c ft_str/ft_strnstr.c ft_str/ft_strlen.c ft_str/ft_strrchr.c ft_str/ft_strjoin.c ft_str/ft_strmapi.c ft_str/ft_strtrim.c ft_str/ft_striteri.c ft_str/ft_strdup.c \
-		ft_to/ft_itoa.c ft_to/ft_tolower.c ft_to/ft_toupper.c ft_to/ft_atoi.c \
-		ft_split.c ft_substr.c ft_bzero.c ft_calloc.c \
-		ft_lst/ft_lstadd_back.c ft_lst/ft_lstadd_front.c ft_lst/ft_lstclear.c ft_lst/ft_lstdelone.c ft_lst/ft_lstiter.c ft_lst/ft_lstlast.c ft_lst/ft_lstmap.c ft_lst/ft_lstnew.c ft_lst/ft_lstsize.c \
-		
-OBJS = $(SRCS:.c=.o)
+#Variables
 
-CC = cc
-RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -I.
+NAME		= libft.a
+INCLUDES	= include
+SRCS_DIR	= sources/
+CC			= cc
+RM			= rm -f
+CFLAGS		= -Wall -Wextra -Werror
+AR			= ar rcs
 
-NAME = libft.a
+#Colors
+DEF = \033[0m
+Y = \033[0;93m
+G = \033[0;92m
+R = \033[0;91m
+
+#Sources
+
+SRC_FILES	=	ft_isalnum ft_isprint ft_isalpha ft_isdigit ft_isascii \
+				ft_memcmp ft_memmove ft_memcpy ft_memchr ft_memset \
+				ft_putchar_fd ft_putnbr_fd ft_putstr_fd ft_putendl_fd \
+				ft_strlcat ft_strncmp ft_strchr ft_strlcpy ft_strnstr \
+				ft_strlen ft_strrchr ft_strjoin ft_strmapi ft_strtrim \
+				ft_striteri ft_strdup \
+				ft_itoa ft_tolower ft_toupper ft_atoi \
+				ft_split ft_substr ft_bzero ft_calloc \
+				ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone \
+				ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize
+SRCS		= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
+OBJS		= $(SRCS:.c=.o)
+
+#Rules
+
+.c.o:
+					@$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $@
+					@echo "$(Y)-Compiling $<$(DEF)"
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-		ar rcs $(NAME) $(OBJS)
+$(NAME):	$(OBJS)
+					@$(AR) $(NAME) $(OBJS)
+					@echo "$(G)--- ft_printf compiled succesfully! ---$(DEF)"
 
 clean:
-		$(RM) $(OBJS)
+					@echo "$(Y)- Cleaning object files...$(DEF)"
+					@$(RM) $(OBJS)
+					@echo "$(R)- Object files cleaned!$(DEF)"
 
-fclean: clean
-		$(RM) $(NAME)
+fclean:		clean
+					@echo "$(Y)- Cleaning all build files...$(DEF)"
+					@$(RM) $(NAME)
+					@echo "$(R)- All build files cleaned!$(DEF)"
 
-re: fclean $(NAME)
+re:			fclean all
 
-.PHONY: all clean fclean re
+bonus:		re
+
+.PHONY:		all clean fclean re bonus
