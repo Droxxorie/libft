@@ -12,6 +12,8 @@
 
 #include "../../include/libft.h"
 
+//TODO add support for precision in ft_printdbl_fd
+//TODO add support for %e, %g, and scientific notation
 static int	ft_format(const char c, va_list args)
 {
 	if (c == 'c')
@@ -30,6 +32,8 @@ static int	ft_format(const char c, va_list args)
 		return (ft_printhex_fd(va_arg(args, unsigned int), 1, 1));
 	else if (c == '%')
 		return (ft_printchar_fd('%', 1));
+	else if (c == 'f')
+		return (ft_printdbl_fd(va_arg(args, double), 1, 6));
 	return (-1);
 }
 

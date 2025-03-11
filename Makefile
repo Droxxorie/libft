@@ -6,55 +6,68 @@
 #    By: eraad <eraad@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 17:54:26 by marvin            #+#    #+#              #
-#    Updated: 2025/03/06 14:14:51 by eraad            ###   ########.fr        #
+#    Updated: 2025/03/11 10:55:03 by eraad            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#Variables
+#* Variables
 NAME		= libft.a
-INCLUDES	= include
-SRCS_DIR	= sources/
 CC			= cc
-RM			= rm -f
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -ggdb3
 AR			= ar rcs
+INCLUDES	= -I./include
 
-#Colors
+#* Colors
+#* **************************************************************************** #
 DEF = \033[0m
 Y = \033[0;93m
 G = \033[0;92m
 R = \033[0;91m
+ORANGE = \033[38;5;208m
+LIGHT_GREEN = \033[38;5;120m
+NEON_GREEN = \033[38;5;82m
+#* **************************************************************************** #
 
-#Sources
-SRC_FILES	=	ft_isalnum ft_isprint ft_isalpha ft_isdigit ft_isascii \
-				ft_memcmp ft_memmove ft_memcpy ft_memchr ft_memset \
-				ft_putchar_fd ft_putnbr_fd ft_putstr_fd ft_putendl_fd \
-				ft_strlcat ft_strncmp ft_strchr ft_strlcpy ft_strnstr \
-				ft_strlen ft_strrchr ft_strjoin ft_strmapi ft_strtrim \
-				ft_striteri ft_strdup \
-				ft_itoa ft_tolower ft_toupper ft_atoi \
-				ft_split ft_substr ft_bzero ft_calloc \
-				ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone \
-				ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize
-SRCS		= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
-OBJS		= $(SRCS:.c=.o)
+#* Sources
+#* **************************************************************************** #
+SRCS_DIR	=	sources/
+SRC_FILES	=	ft_is/ft_isalnum.c ft_is/ft_isalpha.c ft_is/ft_isascii.c ft_is/ft_isdigit.c ft_is/ft_isprint.c ft_is/ft_iswhitespace.c \
+				ft_lst/ft_lstadd_back.c ft_lst/ft_lstadd_front.c ft_lst/ft_lstclear.c ft_lst/ft_lstdelone.c ft_lst/ft_lstiter.c ft_lst/ft_lstlast.c ft_lst/ft_lstmap.c ft_lst/ft_lstnew.c ft_lst/ft_lstsize.c \
+				ft_mem/ft_bzero.c ft_mem/ft_calloc.c ft_mem/ft_memchr.c ft_mem/ft_memcmp.c ft_mem/ft_memcpy.c ft_mem/ft_memmove.c ft_mem/ft_memset.c \
+				ft_put/ft_putchar_fd.c ft_put/ft_putendl_fd.c ft_put/ft_putnbr_fd.c ft_put/ft_putstr_fd.c \
+				ft_str/ft_strchr.c ft_str/ft_strdup.c ft_str/ft_striteri.c ft_str/ft_strjoin.c ft_str/ft_strlcat.c ft_str/ft_strlcpy.c ft_str/ft_strlen.c ft_str/ft_strmapi.c ft_str/ft_strncmp.c ft_str/ft_strnstr.c ft_str/ft_strrchr.c ft_str/ft_strtrim.c ft_str/ft_substr.c \
+				gnl/get_next_line.c \
+				maths/ft_abs.c maths/ft_fabs.c maths/ft_pow.c \
+				printf/ft_printaddr_fd.c printf/ft_printchar_fd.c printf/ft_printdbl.c printf/ft_printf.c printf/ft_printhex_fd.c printf/ft_printnbr_fd.c printf/ft_printstr_fd.c printf/ft_printunbr_fd.c \
+				utils/ft_atodbl.c utils/ft_atoi.c utils/ft_count_words.c utils/ft_dbltoa.c utils/ft_intlen.c utils/ft_itoa.c utils/ft_split.c utils/ft_tolower.c utils/ft_toupper.c \
 
-#Rules
-.c.o:
-					@$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $@
+SRCS = $(addprefix $(SRCS_DIR), $(SRC_FILES))
+#* **************************************************************************** #
 
+#* Objects
+#* **************************************************************************** #
+OBJS_DIR	=	objects/
+OBJS		=	$(patsubst $(SRCS_DIR)%.c, $(OBJS_DIR)%.o, $(SRCS))
+
+#* Rules
 all: $(NAME)
 
 $(NAME):	$(OBJS)
 					@$(AR) $(NAME) $(OBJS)
-					@echo "$(G)--- $(NAME) compiled succesfully! ---$(DEF)"
+					@echo "$(NEON_GREEN)     ---------------------------------------$(DEF)"
+					@echo "$(NEON_GREEN)     |    $(NAME) compiled succesfully!    |$(DEF)"
+					@echo "$(NEON_GREEN)     ---------------------------------------$(DEF)"
+
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
+				@mkdir -p $(dir $@)
+				@$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 clean:
-					@$(RM) $(OBJS)
+					@rm -rf $(OBJS_DIR)
 
 fclean:		clean
-					@$(RM) $(NAME)
+					@rm -f $(NAME)
 
-re:			fclean all
+re:			fclean $(NAME)
 
 .PHONY:		all clean fclean re

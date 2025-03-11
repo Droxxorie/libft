@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//* #include "../../include/libft.h"
-
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -46,14 +44,11 @@ typedef struct s_atodbl
 
 typedef struct s_dbltoa
 {
-	double	number;
 	int		sign;
 	int		int_part;
 	double	dec_part;
 	char	*int_str;
 	char	*dec_str;
-	int		int_len;
-	int		dec_len;
 	char	*result;
 
 }	t_dbltoa;
@@ -152,6 +147,7 @@ int		ft_printstr_fd(char *s, int fd);
 int		ft_printf(const char *format, ...);
 int		ft_printaddr_fd(void *adress, int fd);
 int		ft_printunbr_fd(unsigned int n, int fd);
+int		ft_printdbl_fd(double number, int fd, int precision);
 int		ft_printhex_fd(unsigned int n, int fd, int uppercase);
 //************************************************************************
 //***********
@@ -167,9 +163,9 @@ double	ft_atodbl(char *s);
 int		ft_atoi(const char *nptr);
 char	**ft_split(char const *s, char sep);
 int		count_words(char const *s, char sep);
-char	*create_word(char const *s, int len);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_bzero(void *s, long unsigned int n);
+char	*ft_dbltoa(double number, int precision);
 //************************************************************************
 //***********
 //*
