@@ -133,8 +133,11 @@ char	*get_next_line(int fd);
 //************************************************************************
 int		ft_abs(int n);
 double	ft_fabs(double n);
-double	ft_pow(double base, double exponant); //use it in dbltoa and atodbl
-//TODO ft_sqrt(double nbr);
+double	ft_max(double *array, int size);
+double	ft_min(double *array, int size);
+int		ft_argmax(double *array, int size);
+int		ft_argmin(double *array, int size);
+double	ft_pow(double base, double exponant);
 //************************************************************************
 //***********
 //*

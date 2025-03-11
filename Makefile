@@ -6,7 +6,7 @@
 #    By: eraad <eraad@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 17:54:26 by marvin            #+#    #+#              #
-#    Updated: 2025/03/11 10:55:03 by eraad            ###   ########.fr        #
+#    Updated: 2025/03/11 11:53:32 by eraad            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRC_FILES	=	ft_is/ft_isalnum.c ft_is/ft_isalpha.c ft_is/ft_isascii.c ft_is/ft_is
 				ft_put/ft_putchar_fd.c ft_put/ft_putendl_fd.c ft_put/ft_putnbr_fd.c ft_put/ft_putstr_fd.c \
 				ft_str/ft_strchr.c ft_str/ft_strdup.c ft_str/ft_striteri.c ft_str/ft_strjoin.c ft_str/ft_strlcat.c ft_str/ft_strlcpy.c ft_str/ft_strlen.c ft_str/ft_strmapi.c ft_str/ft_strncmp.c ft_str/ft_strnstr.c ft_str/ft_strrchr.c ft_str/ft_strtrim.c ft_str/ft_substr.c \
 				gnl/get_next_line.c \
-				maths/ft_abs.c maths/ft_fabs.c maths/ft_pow.c \
+				maths/ft_abs.c maths/ft_fabs.c maths/ft_pow.c maths/ft_argmax.c maths/ft_max.c maths/ft_min.c maths/ft_argmin.c \
 				printf/ft_printaddr_fd.c printf/ft_printchar_fd.c printf/ft_printdbl.c printf/ft_printf.c printf/ft_printhex_fd.c printf/ft_printnbr_fd.c printf/ft_printstr_fd.c printf/ft_printunbr_fd.c \
 				utils/ft_atodbl.c utils/ft_atoi.c utils/ft_count_words.c utils/ft_dbltoa.c utils/ft_intlen.c utils/ft_itoa.c utils/ft_split.c utils/ft_tolower.c utils/ft_toupper.c \
 
