@@ -6,14 +6,14 @@
 #    By: eraad <eraad@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 17:54:26 by marvin            #+#    #+#              #
-#    Updated: 2025/03/11 11:53:32 by eraad            ###   ########.fr        #
+#    Updated: 2025/03/11 19:21:26 by eraad            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #* Variables
 NAME		= libft.a
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -ggdb3
+CFLAGS		= -Wall -Wextra -Werror
 AR			= ar rcs
 INCLUDES	= -I./include
 
@@ -33,7 +33,7 @@ NEON_GREEN = \033[38;5;82m
 SRCS_DIR	=	sources/
 SRC_FILES	=	ft_is/ft_isalnum.c ft_is/ft_isalpha.c ft_is/ft_isascii.c ft_is/ft_isdigit.c ft_is/ft_isprint.c ft_is/ft_iswhitespace.c \
 				ft_lst/ft_lstadd_back.c ft_lst/ft_lstadd_front.c ft_lst/ft_lstclear.c ft_lst/ft_lstdelone.c ft_lst/ft_lstiter.c ft_lst/ft_lstlast.c ft_lst/ft_lstmap.c ft_lst/ft_lstnew.c ft_lst/ft_lstsize.c \
-				ft_mem/ft_bzero.c ft_mem/ft_calloc.c ft_mem/ft_memchr.c ft_mem/ft_memcmp.c ft_mem/ft_memcpy.c ft_mem/ft_memmove.c ft_mem/ft_memset.c \
+				ft_mem/ft_bzero.c ft_mem/ft_calloc.c ft_mem/ft_memchr.c ft_mem/ft_memcmp.c ft_mem/ft_memcpy.c ft_mem/ft_memmove.c ft_mem/ft_memset.c ft_mem/ft_realloc.c \
 				ft_put/ft_putchar_fd.c ft_put/ft_putendl_fd.c ft_put/ft_putnbr_fd.c ft_put/ft_putstr_fd.c \
 				ft_str/ft_strchr.c ft_str/ft_strdup.c ft_str/ft_striteri.c ft_str/ft_strjoin.c ft_str/ft_strlcat.c ft_str/ft_strlcpy.c ft_str/ft_strlen.c ft_str/ft_strmapi.c ft_str/ft_strncmp.c ft_str/ft_strnstr.c ft_str/ft_strrchr.c ft_str/ft_strtrim.c ft_str/ft_substr.c \
 				gnl/get_next_line.c \
@@ -54,9 +54,11 @@ all: $(NAME)
 
 $(NAME):	$(OBJS)
 					@$(AR) $(NAME) $(OBJS)
-					@echo "$(NEON_GREEN)     ---------------------------------------$(DEF)"
-					@echo "$(NEON_GREEN)     |    $(NAME) compiled succesfully!    |$(DEF)"
-					@echo "$(NEON_GREEN)     ---------------------------------------$(DEF)"
+					@echo "$(NEON_GREEN)     .---------. $(DEF)"
+					@echo "$(NEON_GREEN)    (   libft   )$(DEF)"
+					@echo "$(NEON_GREEN)     '---------' $(DEF)"
+
+
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 				@mkdir -p $(dir $@)

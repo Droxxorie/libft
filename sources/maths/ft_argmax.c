@@ -23,9 +23,9 @@ int	ft_argmax(double *array, int size)
 	i = 1;
 	while (i < size)
 	{
-		if (array[i] > array[min_index])
-			min_index = i;
+		if (array[i] > array[max_index])
+			max_index = i;
 		i++;
 	}
-	return (min_index);
+	return (max_index);
 }
