@@ -1,6 +1,6 @@
 # Libft
 
-Libft est une bibliothéque standard C personnalisée, dévelopée dans le cadre du cursus de l'**École 42**. Elle offre un ensemble de fonctions fondamentales pour la gestion de la mémoire, les chaînes de caractères, les listes chaînées, les fonctions mathématiques, l'affichage formaté, ainsi que fiverse fonctions utilitaires.
+Libft est une bibliothèque standard C personnalisée, développée dans le cadre du cursus de l'**École 42**. Elle offre un ensemble de fonctions fondamentales pour la gestion de la mémoire, les chaînes de caractères, les listes chaînées, les fonctions mathématiques, l'affichage formaté, ainsi que diverse fonctions utilitaires.
 
 ---
 
@@ -36,15 +36,15 @@ Pour compiler la bibliothèque :
 make
 ```
 
-Cela génére un fichier `libft.a`.
+Cela génère un fichier `libft.a`.
 
-Netoyer les fichier objets :
+Nettoyer les fichiers objets :
 
 ```sh
 make clean
 ```
 
-Supprimer tous les fichier compilés :
+Supprimer tous les fichiers compilés :
 
 ```sh
 make fclean
@@ -101,7 +101,7 @@ cc main.c libft.a
 ### get_next_line
 - `get_next_line`
 
-### ft_printf (printf custom)
+### ft_printf (implémentation custom de printf)
 - `ft_printf`, `ft_printchar_fd`, `ft_printstr_fd`, `ft_printnbr_fd`, `ft_printunbr_fd`, `ft_printhex_fd`, `ft_printaddr_fd`, `ft_printdbl`
 
 ---
