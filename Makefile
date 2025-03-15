@@ -5,20 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: eraad <eraad@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/27 17:54:26 by marvin            #+#    #+#              #
-#    Updated: 2025/03/11 19:21:26 by eraad            ###   ########.fr        #
+#    Created: 2025/03/15 12:06:42 by eraad             #+#    #+#              #
+#    Updated: 2025/03/15 12:06:54 by eraad            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#* Variables
+#* ------------------ Variables ---------------------- *#
 NAME		= libft.a
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 AR			= ar rcs
 INCLUDES	= -I./include
 
-#* Colors
-#* **************************************************************************** #
+#* ------------------ Colors ------------------------- *#
 DEF = \033[0m
 Y = \033[0;93m
 G = \033[0;92m
@@ -26,10 +25,8 @@ R = \033[0;91m
 ORANGE = \033[38;5;208m
 LIGHT_GREEN = \033[38;5;120m
 NEON_GREEN = \033[38;5;82m
-#* **************************************************************************** #
 
-#* Sources
-#* **************************************************************************** #
+#* ------------------ Sources ------------------------ *#
 SRCS_DIR	=	sources/
 SRC_FILES	=	ft_is/ft_isalnum.c ft_is/ft_isalpha.c ft_is/ft_isascii.c ft_is/ft_isdigit.c ft_is/ft_isprint.c ft_is/ft_iswhitespace.c \
 				ft_lst/ft_lstadd_back.c ft_lst/ft_lstadd_front.c ft_lst/ft_lstclear.c ft_lst/ft_lstdelone.c ft_lst/ft_lstiter.c ft_lst/ft_lstlast.c ft_lst/ft_lstmap.c ft_lst/ft_lstnew.c ft_lst/ft_lstsize.c \
@@ -39,17 +36,15 @@ SRC_FILES	=	ft_is/ft_isalnum.c ft_is/ft_isalpha.c ft_is/ft_isascii.c ft_is/ft_is
 				gnl/get_next_line.c \
 				maths/ft_abs.c maths/ft_fabs.c maths/ft_pow.c maths/ft_argmax.c maths/ft_max.c maths/ft_min.c maths/ft_argmin.c \
 				printf/ft_printaddr_fd.c printf/ft_printchar_fd.c printf/ft_printdbl.c printf/ft_printf.c printf/ft_printhex_fd.c printf/ft_printnbr_fd.c printf/ft_printstr_fd.c printf/ft_printunbr_fd.c \
-				utils/ft_atodbl.c utils/ft_atoi.c utils/ft_count_words.c utils/ft_dbltoa.c utils/ft_intlen.c utils/ft_itoa.c utils/ft_split.c utils/ft_tolower.c utils/ft_toupper.c \
+				utils/ft_atodbl.c utils/ft_atoi.c utils/ft_count_words.c utils/ft_dbltoa.c utils/ft_intlen.c utils/ft_itoa.c utils/ft_split.c utils/ft_tolower.c utils/ft_toupper.c utils/ft_free_str_array.c utils/ft_free_2d_str_array.c \
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRC_FILES))
-#* **************************************************************************** #
 
-#* Objects
-#* **************************************************************************** #
+#* ------------------ Objects ------------------------ *#
 OBJS_DIR	=	objects/
 OBJS		=	$(patsubst $(SRCS_DIR)%.c, $(OBJS_DIR)%.o, $(SRCS))
 
-#* Rules
+#* ------------------ Rules -------------------------- *#
 all: $(NAME)
 
 $(NAME):	$(OBJS)
