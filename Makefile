@@ -6,18 +6,18 @@
 #    By: eraad <eraad@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/15 12:06:42 by eraad             #+#    #+#              #
-#    Updated: 2025/03/15 12:06:54 by eraad            ###   ########.fr        #
+#    Updated: 2025/03/15 12:17:26 by eraad            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#* ------------------ Variables ---------------------- *#
+#* ------------------ Variables ---------------------- *
 NAME		= libft.a
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 AR			= ar rcs
 INCLUDES	= -I./include
 
-#* ------------------ Colors ------------------------- *#
+#* ------------------ Colors ------------------------- *
 DEF = \033[0m
 Y = \033[0;93m
 G = \033[0;92m
@@ -26,7 +26,7 @@ ORANGE = \033[38;5;208m
 LIGHT_GREEN = \033[38;5;120m
 NEON_GREEN = \033[38;5;82m
 
-#* ------------------ Sources ------------------------ *#
+#* ------------------ Sources ------------------------ *
 SRCS_DIR	=	sources/
 SRC_FILES	=	ft_is/ft_isalnum.c ft_is/ft_isalpha.c ft_is/ft_isascii.c ft_is/ft_isdigit.c ft_is/ft_isprint.c ft_is/ft_iswhitespace.c \
 				ft_lst/ft_lstadd_back.c ft_lst/ft_lstadd_front.c ft_lst/ft_lstclear.c ft_lst/ft_lstdelone.c ft_lst/ft_lstiter.c ft_lst/ft_lstlast.c ft_lst/ft_lstmap.c ft_lst/ft_lstnew.c ft_lst/ft_lstsize.c \
@@ -40,11 +40,11 @@ SRC_FILES	=	ft_is/ft_isalnum.c ft_is/ft_isalpha.c ft_is/ft_isascii.c ft_is/ft_is
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRC_FILES))
 
-#* ------------------ Objects ------------------------ *#
+#* ------------------ Objects ------------------------ *
 OBJS_DIR	=	objects/
 OBJS		=	$(patsubst $(SRCS_DIR)%.c, $(OBJS_DIR)%.o, $(SRCS))
 
-#* ------------------ Rules -------------------------- *#
+#* ------------------ Rules -------------------------- *
 all: $(NAME)
 
 $(NAME):	$(OBJS)
